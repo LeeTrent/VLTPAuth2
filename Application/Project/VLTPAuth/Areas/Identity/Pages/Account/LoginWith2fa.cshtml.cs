@@ -86,7 +86,11 @@ namespace VLTPAuth.Areas.Identity.Pages.Account
             {
                 _logger.LogInformation("User with ID '{UserId}' logged in with 2fa.", user.Id);
                 //return LocalRedirect(returnUrl);
-                 return RedirectToPage("./LoginWith2faSuccess");
+                 //return RedirectToPage("./LoginWith2faSuccess");
+                 //return Redirect("https://nytimes.com?ID=F9ADS79SD8AF9SAD8FF9S0");
+                // https://apps.ocfo.gsa.gov/ords/volta/volta.volta_main
+                //return Redirect("https://apps.ocfo.gsa.gov/ords/volta/volta.volta_main?id=A1DF8FDS989DDKJSHFDSJ");
+                return Redirect(string.Format("https://apps.ocfo.gsa.gov/ords/volta/volta.volta_main?id={0}", user.Id));
             }
             else if (result.IsLockedOut)
             {

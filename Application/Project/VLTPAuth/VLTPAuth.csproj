@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-VLTPAuth-C38B5F98-088C-4471-8A78-5BCB92A766C2</UserSecretsId>
+    <RuntimeIdentifiers>rhel-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>

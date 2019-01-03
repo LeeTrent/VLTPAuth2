@@ -80,7 +80,7 @@ namespace VLTPAuth.Areas.Identity.Pages.Account
             _logger.LogInformation("[LoginWith2fa][OnPost] => authenticatorCode: " + authenticatorCode);
 
             var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, Input.RememberMachine);
-            _logger.LogInformation("[LoginWith2fa][OnPost] => SignInResult.Succeeded: " + result.Succeeded);
+            _logger.LogInformation("[LoginWith2fa][OnPost] => TwoFactorAuthenticatorSignIn.Succeeded: " + result.Succeeded);
             
             if (result.Succeeded)
             {
@@ -90,6 +90,11 @@ namespace VLTPAuth.Areas.Identity.Pages.Account
                  //return Redirect("https://nytimes.com?ID=F9ADS79SD8AF9SAD8FF9S0");
                 // https://apps.ocfo.gsa.gov/ords/volta/volta.volta_main
                 //return Redirect("https://apps.ocfo.gsa.gov/ords/volta/volta.volta_main?id=A1DF8FDS989DDKJSHFDSJ");
+                
+                _logger.LogInformation("[LoginWith2fa][OnPost] => Calling _signInManager.SignOutAsync()");
+                await _signInManager.SignOutAsync();
+                
+                _logger.LogInformation("[LoginWith2fa][OnPost] => Redirecting to VLTP website");
                 return Redirect(string.Format("https://apps.ocfo.gsa.gov/ords/volta/volta.volta_main?id={0}", user.Id));
             }
             else if (result.IsLockedOut)
